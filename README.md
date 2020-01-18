@@ -68,7 +68,13 @@ Make your part in as few features as possible, with absolutely massive sketches 
 ## A ton of tiny things
 Make your part in as many features as possible. If you need to make a stepped shaft, don't do it as one revolved feature, do it as a series of extrusions. Noting above, make sure each is named either defaultly, or arbitrarially.
 
+## Compensate, never fix
+If there is an issue with the part, never, ever, ever go into the defining feature and make the change. Use synchrous modeling tools like Move Face to change dimensions. Add cut-extrudes that effectively undo previous operations. Whatever you can do to make the feature tree longer makes the person reading your model's job that much more fun.
+
 # Housekeeping
 
 ## Always on, all the time
 Make sure you always have every sketch, axis, plane, point, origin VISIBLE at all times. This way selecting something is quite simple and you do not need to move your cursor over to the Feature Tree to find things.
+
+## Units, schmunits
+Some CAD softwares like NX do not permit you to make assemblies of parts with different units. However most packages do allow this. Use this to your advantage. Make one part in inches. Another in millimeters. Another in centimeters. Feet. Angstroms. Microinches. Whatever you can do to keep the maintainer on their toes. Meters for IV needles, microinches for a car chassis.
