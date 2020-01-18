@@ -1,3 +1,5 @@
+(Inspired by the infamous "How To Write Unmaintainable Code": http://www2.imm.dtu.dk/courses/02161/2019/files/how_to_write_unmaintainable_code.pdf)
+
 # Introduction
 
 _Never ascribe to malice, that which can be explained by incompetence._
