@@ -21,6 +21,39 @@ Designers are lulled into complacency by convention. But every once in a while, 
 
 You might get the idea that every CAD program makes models unmaintainable -- not so, only if properly misused.
 
+# Structural Design
+
+_"The cardinal rule of writing unmaintainable [CAD] is to specifiy each fact in as many places as possible and in as many ways as possible."_
+- Roedy Green
+
+## Never lay things out.
+Layout AKA Skeleton sketches are the ultimate prevention tool from unmaintainable CAD. If a part begins with a sketch unattached to a feature as its first component, the chances of absurdly used features, redundant features, and sketches without intent drops very low, very quickly. As such never, ever make a layout sketch. They are clearly just a waste of kilobytes of disk space, which is only serving to make load times for the assemblies larger.
+
+## If you do lay things out...
+Don't obey the layout sketch. It was a suggestion. Just a scratchpad to think about things. Now with that ideation out of the way you can get on with guessing at dimensions and making it all work out.
+
+## Use more verbose dimensions, which can be used to define the location of things, and drive the position of entities
+If you want five holes, equally spaced at a 1" interval, dimension one 1" from an edge, another 2" from the edge, the third 3", and so forth. Do NOT, under ANY circumstance, make construction geometry between the holes and specify them equally spaced. This would make changing the regular spacing too easy. Also, make sure each hole is independently dimensioned. You don't want one convenient place to change the size of hole needed.
+
+## A few big things
+Make your part in as few features as possible, with absolutely massive sketches as a result. If you need to make a 2D gearbox plate with pockets, make it all in one sketch - it's just a 2D part anyways! Do NOT break the pockets into their own extrude. Do NOT make bosses for the mount points their own feature. Do it in one shot.
+
+## A ton of tiny things
+Make your part in as many features as possible. If you need to make a stepped shaft, don't do it as one revolved feature, do it as a series of extrusions. Noting above, make sure each is named either defaultly, or arbitrarially.
+
+## Don't use equations. Or at least, not consistently.
+When designing an injection molded part you may need to create something with uniform wall thickness, and often a shell will not do quite what you want. To make this difficult to change easily, do not dimension every wall thickness off of a single global variable - just define it different in each spot. That way the next designer (or you) has to go through and change every instance, increasing room for error and billable hours.
+
+Alternatively, _do_ use a variable, but don't use it everywhere. This way the next fellow _thinks_ they've successfully increased the wall thickness, but they have not.
+
+If making a multi-body sheetmetal part, override the default sheetmetal thickness every chance you get.
+
+## Compensate, never fix
+If there is an issue with the part, never, ever, ever go into the defining feature and make the change. Use synchrous modeling tools like Move Face to change dimensions. Add cut-extrudes that effectively undo previous operations. Whatever you can do to make the feature tree longer makes the person reading your model's job that much more fun.
+
+## Upend the Heirarchy
+The art of top-down CAD is a struggle with glorious benefits (in the initial design phase) once executed right. When executed improperly, it is a nightmare of spaghetti that will send the next engnineer into a tizzy trying to sort out what drives what. To ensure the latter scenario is quite simple: make sure you don't only design top-down but bottom-up as well. Do not use a master sketch in assembly A1 that drives features in parts P1, P2, and P3. Make some bits of P1 drive P2, bits of P3 drive P2, and bits of P2 drive P3. If done subtly enough, your CAD package will not pick up on the fact that you've created a circular reference. Simply having P1 drive P2 and P3 will not result in the explosion of dependencies - you must intermingle further than this.
+
 # Naming
 
 _"When I use a word," Humpty Dumpty said, in a rather scornful tone, "it means justwhat I choose it to mean - neither more nor less."_
@@ -47,29 +80,6 @@ Just start typing. Go nuts. `asdf` is a perfectly valid name to the compiler.
 ## Misdirection
 
 Rename things to what they aren't. Rename a boss-extrude to Revolved-77. This is even better when the part is only a couple features long, so that the 77 conveys an air of struggle that finally came to a head in the triumphant 10 lines of features.
-
-# Structural Design
-
-_"The cardinal rule of writing unmaintainable [CAD] is to specifiy each fact in as many places as possible and in as many ways as possible."_
-- Roedy Green
-
-## Never lay things out.
-Layout AKA Skeleton sketches are the ultimate prevention tool from unmaintainable CAD. If a part begins with a sketch unattached to a feature as its first component, the chances of absurdly used features, redundant features, and sketches without intent drops very low, very quickly. As such never, ever make a layout sketch. They are clearly just a waste of kilobytes of disk space, which is only serving to make load times for the assemblies larger.
-
-## If you do lay things out...
-Don't obey the layout sketch. It was a suggestion. Just a scratchpad to think about things. Now with that ideation out of the way you can get on with guessing at dimensions and making it all work out.
-
-## Use more verbose dimensions, which can be used to define the location of things, and drive the position of entities
-If you want five holes, equally spaced at a 1" interval, dimension one 1" from an edge, another 2" from the edge, the third 3", and so forth. Do NOT, under ANY circumstance, make construction geometry between the holes and specify them equally spaced. This would make changing the regular spacing too easy. Also, make sure each hole is independently dimensioned. You don't want one convenient place to change the size of hole needed.
-
-## A few big things
-Make your part in as few features as possible, with absolutely massive sketches as a result. If you need to make a 2D gearbox plate with pockets, make it all in one sketch - it's just a 2D part anyways! Do NOT break the pockets into their own extrude. Do NOT make bosses for the mount points their own feature. Do it in one shot.
-
-## A ton of tiny things
-Make your part in as many features as possible. If you need to make a stepped shaft, don't do it as one revolved feature, do it as a series of extrusions. Noting above, make sure each is named either defaultly, or arbitrarially.
-
-## Compensate, never fix
-If there is an issue with the part, never, ever, ever go into the defining feature and make the change. Use synchrous modeling tools like Move Face to change dimensions. Add cut-extrudes that effectively undo previous operations. Whatever you can do to make the feature tree longer makes the person reading your model's job that much more fun.
 
 # Housekeeping
 
