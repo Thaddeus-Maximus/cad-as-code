@@ -1,16 +1,50 @@
 Some programmers have a bit of a stereotype for being extremely caring and coddling about their code. This, coupled with the inherent amount of flexibilty in method afforded by writing code, means that there seems to have developed an entire field surrounding programming styles and best practices that rivals and arguably supersedes rhetoric in its nuance for effective writing.
 
+The low barrier to entry also has meant higher hobbyist involvement, spurring a wide swath of different playful ways of developing code and many different \textit{paradigms}. We (until recently) have not seen such hobbyist involvement in the CAD-sphere, so there does not seem to have been as much playful attitude surrounding CAD software.
+
 The nature of programming itself also requires a good deal of thinking about many abstract concepts in a somewhat concrete form: heirarchies, modules, maintenance, documentation; and many abstract needs: stability, extensability, readability. Nowhere have seen such dedication to these excellent engineering pursuits laid out in such a way that is actually easy to comprehend and apply in daily life (as opposed to miles of standard operating procedures which an engineer has scant hope of doing, let alone reading in entirety). 
 
-I spent many of my formative years as a programmer, so
+I spent many of my formative years as a programmer, so I'm accustomed to thinking in these abstract and playful concepts, and I noticed immediately it meant that I wrote my CAD very differently than others- with the intent not just to mold the finished shape
 
+\section{Why do you care?}
+
+Why do you care about good CAD? There is a common problem that is seen by many programmers and mechanical designers alike, and that is to simply view the CAD or code as an end product rather than the sum of its inputs; "as long as it works". This is not the case, though- especially not in a team environment. Good CAD or code is like good writing- it's readable.
+
+\section{Self-Documentation}
+
+\textit{Comments} are a commonly used documentation tool in programming. The effective idea is to introduce bits of plaintext that do not impact how the program runs directly into the source code, which can be used to label things and provide explanation. This sounds like a marvelous tool, especially for code where the outputs may not be immediately understandable. That being said, like any tool, it can be misused. Many code suffers from one or more of the following problems:
+
+\begin{asparaenum}[a)]
+	\item Lack of comments
+	\item Surplus of comments
+	\item Incorrect comments
+\end{asparaenum}
+
+Most CAD packages lack a direct analogue to this, so the second (and arguably third) error is not found in CAD. And if we don't have such an analogue in CAD, why even bother talking about this?
+
+Well, the comment is not the only tool in the programmers' toolbox for conveying remarks and notes about how something should behave. In fact, it's considered by many to be a last-ditch effort.
 
 \section{Naming}
-Naming isn't as big of a deal in CAD as it is with code, where the majority of elements must be created by typing a name for an object, whereas in CAD entity creation is accomplished through graphical means. This, coupled with the inherent modularity afforded by creating parts and assemblies, 
+% Alternate title: practical linguistics, or what they didn't teach you in grammar school
+% "When I use a word, it means just what I choose it to mean- neither more or less" - Humpty
+% "The question is, whether you can make words mean so many different things" - Alice
+% "The question is, which is to be master- that's all" - Humpty
+Naming isn't as big of a deal in CAD as it is with code, where the majority of elements must be created by typing a name for an object, whereas in CAD entity creation is accomplished through graphical means. This, coupled with the inherent modularity afforded by creating parts and assemblies, makes the naming of features much less important. That being said, when names are provided, they are powerful. This is also good advice for naming things in a general engineering context.
 
-I fear, though, that the increased prevalence of OnShape and its part studios will pose a similar need for rigorous naming, as the inherent modularity of parts is stripped away in favor of larger 'studios'.
+Good names aren't noisy. You might name the extruded cut used to provide clearance for a motor as \code{Motor Clearance Extruded Cut} or even \code{Motor Clearance Cut}.... but an even better name would simply be \code{Motor Clearance}. \textit{How} every single bit of your component was crafted is not important when skimming through and trying to understand- just \textit{where}! Words like \code{Extrude}, \code{Boss}, \code{Loft}... are (usually) all noise. Less is more.
+
+Good names convey intent. If the part connects two pieces, call it a \code{Connecting Rod}, not just a \code{Rod}. If the extrusion provides mounting for a motor, call the feature a \code{Motor Mount}, not just a \code{Mount}.
+
+Good names stick. Often when you're developing something you aren't sure what to call it. One particular part I had designed was first intended to be a `rack', but as development went on and approached a finalized design, we referred to the part more as a `clothespin'. If we were to go on using the word `rack' to describe the part, it would only serve to confuse us as we cut against our emergent naming. Sometimes, you need to take time to let a name \textit{emerge} from the collective unconscious.
+
+Good names use common abbreviations. If you are working on an Orbital Tube Welder (OTW) and everyone in your organization knows about this and uses it in parlance often, it's OK to refer to it as the OTW. But if not, write \code{out Orbital Tube Welder}, or maybe just \code{Tube Welder}.
+
+\section{Order}
 
 \section{Relationships}
 % Alt title: how to avoid having oedipus complexes
 
 When you show a CAD user the power afforded by in-context modeling, or top-down modeling, the power can be overwhelming. The ability to create parts that reference each other, driving each little bit
+
+\section{OnShape}
+OnShape is a neat platform with some features that, in this particular area, merit specific discussion. I am by no means an expert in OnShape, but I see it as an exciting tool that bears even more in common with code, so learning from prior art could be even more critical.
